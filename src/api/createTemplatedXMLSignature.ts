@@ -9,10 +9,11 @@ import { _getCadesCert } from '../helpers/_getCadesCert';
  *
  * @param thumbprint - отпечаток сертификата
  * @param unencryptedMessage - подписываемое сообщение в формате XML
+ * @param checkCertificate - необходимость валидации сертификата. (По умолчанию - true)
  * @returns подпись
  */
 export const createTemplatedXMLSignature = _afterPluginsLoaded(
-  async (thumbprint: string, unencryptedMessage: string): Promise<string> => {
+  async (thumbprint: string, unencryptedMessage: string, checkCertificate = true): Promise<string> => {
     const { cadesplugin } = window;
     const cadesCertificate = await _getCadesCert(thumbprint);
 
@@ -33,7 +34,7 @@ export const createTemplatedXMLSignature = _afterPluginsLoaded(
         try {
 
           void (__cadesAsyncToken__ + cadesSigner.propset_Certificate(cadesCertificate));
-          void (__cadesAsyncToken__ + cadesSigner.propset_CheckCertificate(true));
+          void (__cadesAsyncToken__ + cadesSigner.propset_CheckCertificate(checkCertificate));
           void (__cadesAsyncToken__ + cadesSignedXML.propset_Content(unencryptedMessage));
           void (
             __cadesAsyncToken__ + cadesSignedXML.propset_SignatureType(cadesplugin.CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE)

@@ -3273,51 +3273,55 @@ var _getCadesCert_1 = __webpack_require__(/*! ../helpers/_getCadesCert */ "./hel
  *
  * @param thumbprint - отпечаток сертификата
  * @param unencryptedMessage - подписываемое сообщение в формате XML
+ * @param checkCertificate - необходимость валидации сертификата. (По умолчанию - true)
  * @returns подпись
  */
-exports.createTemplatedXMLSignature = _afterPluginsLoaded_1._afterPluginsLoaded(function (thumbprint, unencryptedMessage) { return __awaiter(void 0, void 0, void 0, function () {
-    var cadesplugin, cadesCertificate;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                cadesplugin = window.cadesplugin;
-                return [4 /*yield*/, _getCadesCert_1._getCadesCert(thumbprint)];
-            case 1:
-                cadesCertificate = _a.sent();
-                return [2 /*return*/, eval(_generateCadesFn_1._generateCadesFn(function createXMLSignature() {
-                        var cadesSigner;
-                        var cadesSignedXML;
-                        try {
-                            cadesSigner = _generateCadesFn_1.__cadesAsyncToken__ + _generateCadesFn_1.__createCadesPluginObject__('CAdESCOM.CPSigner');
-                            cadesSignedXML = _generateCadesFn_1.__cadesAsyncToken__ + _generateCadesFn_1.__createCadesPluginObject__('CAdESCOM.SignedXML');
-                        }
-                        catch (error) {
-                            console.error(error);
-                            throw new Error(_extractMeaningfulErrorMessage_1._extractMeaningfulErrorMessage(error) || 'Ошибка при инициализации подписи');
-                        }
-                        try {
-                            void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSigner.propset_Certificate(cadesCertificate));
-                            void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSigner.propset_CheckCertificate(true));
-                            void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSignedXML.propset_Content(unencryptedMessage));
-                            void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSignedXML.propset_SignatureType(cadesplugin.CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE));
-                        }
-                        catch (error) {
-                            console.error(error);
-                            throw new Error(_extractMeaningfulErrorMessage_1._extractMeaningfulErrorMessage(error) || 'Ошибка при указании данных для подписи');
-                        }
-                        var signature;
-                        try {
-                            signature = _generateCadesFn_1.__cadesAsyncToken__ + cadesSignedXML.Sign(cadesSigner);
-                        }
-                        catch (error) {
-                            console.error(error);
-                            throw new Error(_extractMeaningfulErrorMessage_1._extractMeaningfulErrorMessage(error) || 'Ошибка при подписании данных');
-                        }
-                        return signature;
-                    }))];
-        }
+exports.createTemplatedXMLSignature = _afterPluginsLoaded_1._afterPluginsLoaded(function (thumbprint, unencryptedMessage, checkCertificate) {
+    if (checkCertificate === void 0) { checkCertificate = true; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var cadesplugin, cadesCertificate;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    cadesplugin = window.cadesplugin;
+                    return [4 /*yield*/, _getCadesCert_1._getCadesCert(thumbprint)];
+                case 1:
+                    cadesCertificate = _a.sent();
+                    return [2 /*return*/, eval(_generateCadesFn_1._generateCadesFn(function createXMLSignature() {
+                            var cadesSigner;
+                            var cadesSignedXML;
+                            try {
+                                cadesSigner = _generateCadesFn_1.__cadesAsyncToken__ + _generateCadesFn_1.__createCadesPluginObject__('CAdESCOM.CPSigner');
+                                cadesSignedXML = _generateCadesFn_1.__cadesAsyncToken__ + _generateCadesFn_1.__createCadesPluginObject__('CAdESCOM.SignedXML');
+                            }
+                            catch (error) {
+                                console.error(error);
+                                throw new Error(_extractMeaningfulErrorMessage_1._extractMeaningfulErrorMessage(error) || 'Ошибка при инициализации подписи');
+                            }
+                            try {
+                                void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSigner.propset_Certificate(cadesCertificate));
+                                void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSigner.propset_CheckCertificate(checkCertificate));
+                                void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSignedXML.propset_Content(unencryptedMessage));
+                                void (_generateCadesFn_1.__cadesAsyncToken__ + cadesSignedXML.propset_SignatureType(cadesplugin.CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE));
+                            }
+                            catch (error) {
+                                console.error(error);
+                                throw new Error(_extractMeaningfulErrorMessage_1._extractMeaningfulErrorMessage(error) || 'Ошибка при указании данных для подписи');
+                            }
+                            var signature;
+                            try {
+                                signature = _generateCadesFn_1.__cadesAsyncToken__ + cadesSignedXML.Sign(cadesSigner);
+                            }
+                            catch (error) {
+                                console.error(error);
+                                throw new Error(_extractMeaningfulErrorMessage_1._extractMeaningfulErrorMessage(error) || 'Ошибка при подписании данных');
+                            }
+                            return signature;
+                        }))];
+            }
+        });
     });
-}); });
+});
 
 
 /***/ }),
