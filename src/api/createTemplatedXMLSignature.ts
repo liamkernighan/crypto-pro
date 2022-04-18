@@ -33,12 +33,17 @@ export const createTemplatedXMLSignature = _afterPluginsLoaded(
 
         try {
 
+          const signatureMethod = 'urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102012-gostr34112012-256';
+          const digestMethod = 'urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34112012-256';
+
           void (__cadesAsyncToken__ + cadesSigner.propset_Certificate(cadesCertificate));
           void (__cadesAsyncToken__ + cadesSigner.propset_CheckCertificate(checkCertificate));
           void (__cadesAsyncToken__ + cadesSignedXML.propset_Content(unencryptedMessage));
           void (
             __cadesAsyncToken__ + cadesSignedXML.propset_SignatureType(cadesplugin.CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE)
           );
+          void (__cadesAsyncToken__ + cadesSignedXML.propset_SignatureMethod(signatureMethod));
+          void (__cadesAsyncToken__ + cadesSignedXML.propset_DigestMethod(digestMethod));
         } catch (error) {
           console.error(error);
 
