@@ -7,4 +7,4 @@
  * @param checkCertificate - необходимость валидации сертификата. (По умолчанию - true)
  * @returns подпись
  */
-export declare const createTemplatedXMLSignature: (thumbprint: string, unencryptedMessage: string, checkCertificate?: any) => Promise<string>;
+export declare const createTemplatedXMLSignature: (thumbprint: string, unencryptedMessage: string, checkCertificate?: boolean) => Promise<string>;

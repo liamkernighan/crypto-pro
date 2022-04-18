@@ -13,7 +13,7 @@ import { _getCadesCert } from '../helpers/_getCadesCert';
  * @returns подпись
  */
 export const createTemplatedXMLSignature = _afterPluginsLoaded(
-  async (thumbprint: string, unencryptedMessage: string, checkCertificate = true): Promise<string> => {
+  async (thumbprint: string, unencryptedMessage: string, checkCertificate: boolean = true): Promise<string> => {
     const { cadesplugin } = window;
     const cadesCertificate = await _getCadesCert(thumbprint);
 
