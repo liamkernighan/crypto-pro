@@ -10,7 +10,7 @@
     "bower.json"
   ],
   "scripts": {
-    "clean": "rimraf dist lib package coverage",
+    "clean": "cross-env-shell rimraf dist lib package coverage",
     "start": "cross-env TS_CONFIG=tsconfig-es5.json webpack --watch",
     "build:uncompressed:es5": "cross-env TS_CONFIG=tsconfig-es5.json webpack",
     "build:compressed:es5": "cross-env TS_CONFIG=tsconfig-es5.json NODE_ENV=production webpack",
